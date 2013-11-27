@@ -1,19 +1,24 @@
 body{vertical-align: baseline;}
 
-.niceCheck{float: left;margin-right: 5px;}
-.niceCheck.nstcheck{position: relative;top: -2px;width: 18px;height: 19px;background: url("../img/sprite.png") no-repeat;}
+.niceCheck{float: left;}
+.niceCheck.nstcheck{position: relative;top: -10px;width: 27px;height: 27px;background: url("../img/sprite.png") no-repeat;}
 
 .niceCheck{background-position: 0 0;}
-.niceCheck.active{background-position: 0 -40px;}
+.niceCheck.active{background-position: 0 -60px;}
 
-label:hover .niceCheck{background-position: 0 -20px;}
-label:hover .niceCheck.active{background-position: 0 -60px;}
+label:hover .niceCheck{background-position: 0 -30px;}
+label:hover .niceCheck.active{background-position: 0 -90px;}
 
-.niceCheck.focus, label:active .niceCheck{background-position: 0 -80px;}
-.niceCheck.focus.active, label:active .niceCheck.active{background-position: 0 -100px;}
+.niceCheck.focus{box-shadow: 0 0 5px #7a8f58;border-radius: 5px;}
 
-label .niceCheck.disabled{background-position: 0 -120px;}
-label .niceCheck.disabled.active{background-position: 0 -140px;}
+.niceCheck.focus, label:active .niceCheck{background-position: 0 -120px;}
+.niceCheck.focus.active, label:active .niceCheck.active{background-position: 0 -150px;}
+
+label .niceCheck.disabled{background-position: 0 -180px;}
+label .niceCheck.disabled.active{background-position: 0 -210px;}
+
+label:after{visibility: hidden;display: block;font-size: 0;content: ".";clear: both;height: 0;}
+.nstcheck + .title{display: block;margin-left: 33px;}
 
 .nstcheck.niceCheck input{-moz-opacity: 0;-khtml-opacity: 0;opacity: 0;filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0);}/*.nstcheck - add when initialize plugin*/
 .b_n.niceCheck{background: none;}
