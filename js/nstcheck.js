@@ -12,7 +12,7 @@
                             elCheckWrap: '.niceCheck',
                             evCond: false,
                             classRemove: 'b_n',
-                            before: function() {
+                            trigger: function() {
                             },
                             after: function() {
                             }
@@ -37,7 +37,7 @@
                                     after(frameChecks, $this, nstcheck, e);
                                 }
                                 else {
-                                    settings.before(frameChecks, $this, nstcheck, e);
+                                    settings.trigger(frameChecks, $this, nstcheck, e);
                                 }
                             }
                             return false;
@@ -65,6 +65,7 @@
                             return false;
                         }).off('click.' + nS).on('click.' + nS, function(e) {
                             e.stopPropagation();
+                            return false;
                         }).off('keyup.' + nS).on('keyup.' + nS, function(e) {
                             if (e.keyCode === 32)
                                 $(this).closest(wrapper).trigger('click.' + nS);
