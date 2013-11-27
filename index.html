@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Not standart checkbox</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width"/>
+        <link rel="stylesheet" type="text/css" href="css/style.css"/>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
+        <script type="text/javascript" src="js/nstcheck.js"></script>
+        <style>
+            body{margin: 0 18px;}
+            fieldset{margin: 20px 30px 20px 0;float: left;font-family: Arial, sans-serif;}
+            legend{font-size: 18px;padding: 0 15px;}
+            label{display: block;margin: 7px 0;}
+            .frame-checks-standart label{margin-top: 0;}
+            .c_b{clear: both;}
+            pre{margin-bottom: 30px;}
+        </style>
+        <script>
+            $(document).ready(function() {
+                $('.frame-checks-not-standart').nStCheck()
+            });
+        </script>
+    </head>
+    <body>
+        <fieldset class="frame-checks-standart">
+<pre>
+&lt;span class=&quot;niceCheck b_n&quot;&gt;
+    &lt;input type=&quot;checkbox&quot; tabindex=&quot;-1&quot; id=&quot;id1&quot;/&gt;
+&lt;/span&gt;
+&lt;label for=&quot;id1&quot;&gt;
+    &lt;span class=&quot;title&quot;&gt;unchecked&lt;/span&gt;
+&lt;/label&gt;
+</pre>
+            <legend>Standart checkboxes</legend>
+            <span class="niceCheck b_n">
+                <input type="checkbox" tabindex="-1" id="id1"/>
+            </span>
+            <label for="id1">
+                <span class="title">unchecked</span>
+            </label>
+            <span class="niceCheck b_n">
+                <input type="checkbox" autofocus checked="checked" tabindex="1" id="id2"/>
+            </span>
+            <label for="id2">
+                <span class="title">focus checked</span>
+            </label>
+            <span class="niceCheck b_n">
+                <input type="checkbox" checked="checked" tabindex="-1" id="id3"/>
+            </span>
+            <label for="id3">
+                <span class="title">checked</span>
+            </label>
+            <span class="niceCheck b_n">
+                <input type="checkbox" disabled="disabled" tabindex="-1" id="id4"/>
+            </span>
+            <label for="id4">
+                <span class="title">disabled</span>
+            </label>
+            <span class="niceCheck b_n">
+                <input type="checkbox" disabled="disabled" checked="checked" tabindex="-1" id="id5"/>
+            </span>
+            <label for="id5">
+                <span class="title">disabled and checked</span>
+            </label>
+        </fieldset>
+        <fieldset class="frame-checks-not-standart">
+<pre>
+&lt;label&gt;
+    &lt;span class=&quot;niceCheck b_n&quot;&gt;
+        &lt;input type=&quot;checkbox&quot; tabindex=&quot;-1&quot;/&gt;
+    &lt;/span&gt;
+    &lt;span class=&quot;title&quot;&gt;unchecked&lt;/span&gt;
+&lt;/label&gt;
+</pre>
+            <legend>Not standart checkboxes</legend>
+            <label>
+                <span class="niceCheck b_n">
+                    <input type="checkbox" tabindex="-1"/>
+                </span>
+                <span class="title">unchecked</span>
+            </label>
+            <label>
+                <span class="niceCheck b_n">
+                    <input type="checkbox" checked="checked" tabindex="2"/>
+                </span>
+                <span class="title">focus checked</span>
+            </label>
+            <label>
+                <span class="niceCheck b_n">
+                    <input type="checkbox" checked="checked" tabindex="-1"/>
+                </span>
+                <span class="title">checked</span>
+            </label>
+            <label>
+                <span class="niceCheck b_n">
+                    <input type="checkbox" disabled="disabled" tabindex="-1"/>
+                </span>
+                <span class="title">disabled</span>
+            </label>
+            <label>
+                <span class="niceCheck b_n">
+                    <input type="checkbox" disabled="disabled" checked="checked" tabindex="-1"/>
+                </span>
+                <span class="title">disabled and checked</span>
+            </label>
+        </fieldset>
+        <div class="c_b">Click "Tab" for view not standart check in focus</div>
+    </body>
+</html>
