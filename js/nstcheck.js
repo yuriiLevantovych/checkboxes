@@ -13,7 +13,7 @@
                     wrapper: $("label:has(.niceCheck)"),
                     elCheckWrap: '.niceCheck',
                     evCond: false,
-                    classRemove: '',
+                    classRemove: 'b_n',
                     trigger: function() {
                     },
                     after: function() {
@@ -29,7 +29,7 @@
                 //init event click on wrapper change state
                 frameChecks.find(wrapper).off('click.' + nS).on('click.' + nS, function(e) {
                     var $this = $(this),
-                    $thisD = $this.is('.'+dC),
+                    $thisD = $this.hasClass(dC),
                     nstcheck = $this.find(elCheckWrap);
                     if (nstcheck.length === 0)
                         nstcheck = $this;
@@ -54,7 +54,9 @@
                         checked = checked.add($(this).parent());
                     });
                     $this.find('[type="reset"]').off('click.' + nS).on('click.' + nS, function() {
-                        methods.checkAllReset($this.find(elCheckWrap).not(checked));
+                        var wrap = $this.find(elCheckWrap);
+                        methods.checkAllReset(wrap.not(checked));
+                        methods.checkAllChecks(wrap.not('.'+aC).filter(checked));
                         return false;
                     });
                 });
