@@ -3,9 +3,9 @@
     $.existsN = function(nabir) {
         return (nabir.length > 0);
     };
-    var
-            aC = 'active',
+    var aC = 'active',
             dC = 'disabled',
+            fC = 'focus',
             nS = "nstcheck",
             methods = {
                 init: function(options) {
@@ -26,11 +26,12 @@
                                 evCond = settings.evCond,
                                 classRemove = settings.classRemove,
                                 after = settings.after;
-
+                        
+                        frameChecks.find(elCheckWrap).removeClass(dC+' '+aC+' '+fC);
                         //init event click on wrapper change state
-                        frameChecks.find(wrapper).off('click.' + nS).on('click.' + nS, function(e) {
+                        frameChecks.find(wrapper).removeClass(dC + ' ' + aC + ' ' + fC).off('click.' + nS).on('click.' + nS, function(e) {
                             var $this = $(this),
-                                    $thisD = $this.is('.'+dC),
+                                    $thisD = $this.hasClass(dC),
                                     nstcheck = $this.find(elCheckWrap);
                             if (nstcheck.length === 0)
                                 nstcheck = $this;
@@ -55,7 +56,9 @@
                                 checked = checked.add($(this).parent());
                             });
                             $this.find('[type="reset"]').off('click.' + nS).on('click.' + nS, function() {
-                                methods.checkAllReset($this.find(elCheckWrap).not(checked));
+                                var wrap = $this.find(elCheckWrap);
+                                methods.checkAllReset(wrap.not(checked));
+                                methods.checkAllChecks(wrap.not('.' + aC).filter(checked));
                                 return false;
                             });
                         });
@@ -74,10 +77,10 @@
                                 $(this).closest(wrapper).trigger('click.' + nS);
                         }).off('focus.' + nS).on('focus.' + nS, function(e) {
                             var $this = $(this);
-                            $this.closest(wrapper).add($this.closest(elCheckWrap)).addClass('focus');
+                            $this.closest(wrapper).add($this.closest(elCheckWrap)).addClass(fC);
                         }).off('blur.' + nS).on('blur.' + nS, function(e) {
                             var $this = $(this);
-                            $this.closest(wrapper).add($this.closest(elCheckWrap)).removeClass('focus');
+                            $this.closest(wrapper).add($this.closest(elCheckWrap)).removeClass(fC);
                         }).off('change.' + nS).on('change.' + nS, function() {
                             return false;
                         });
@@ -112,28 +115,22 @@
                     if (el === undefined)
                         el = this;
                     var input = el.find("input");
-                    if (input === undefined)
-                        input = $(this).find("input");
                     el.addClass(aC).parent().addClass(aC);
                     input.attr("checked", 'checked');
-                    $(document).trigger({
+                    input.trigger({
                         'type': nS + '.cc',
-                        'el': el,
-                        'input': input
+                        'el': el
                     });
                 },
                 checkUnChecked: function(el) {
                     if (el === undefined)
                         el = this;
                     var input = el.find("input");
-                    if (input === undefined)
-                        input = $(this).find("input");
                     el.removeClass(aC).parent().removeClass(aC);
                     input.removeAttr("checked");
-                    $(document).trigger({
+                    input.trigger({
                         'type': nS + '.cuc',
-                        'el': el,
-                        'input': input
+                        'el': el
                     });
                 },
                 changeCheck: function(el)
@@ -166,17 +163,16 @@
                 },
                 checkAllDisabled: function(el)
                 {
-                    var el = el;
                     if (el === undefined)
                         el = this;
                     el.each(function() {
-                        var input = el.find("input");
-                        el.addClass(dC).parent().addClass(dC);
+                        var $this = $(this),
+                                input = $this.find("input");
+                        $this.addClass(dC).parent().addClass(dC);
                         input.attr('disabled', 'disabled');
-                        $(document).trigger({
+                        input.trigger({
                             'type': nS + '.ad',
-                            'el': el,
-                            'input': input
+                            'el': $this
                         });
                     });
                 },
@@ -185,13 +181,13 @@
                     if (el === undefined)
                         el = this;
                     el.each(function() {
-                        var input = el.find("input");
-                        el.removeClass(dC).parent().removeClass(dC);
+                        var $this = $(this),
+                                input = $this.find("input");
+                        $this.removeClass(dC).parent().removeClass(dC);
                         input.removeAttr('disabled');
-                        $(document).trigger({
+                        input.trigger({
                             'type': nS + '.ae',
-                            'el': el,
-                            'input': input
+                            'el': $this
                         });
                     });
                 }
