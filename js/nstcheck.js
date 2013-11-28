@@ -3,7 +3,10 @@
     $.existsN = function(nabir) {
         return (nabir.length > 0);
     };
-    var nS = "nstcheck",
+    var
+            aC = 'active',
+            dC = 'disabled',
+            nS = "nstcheck",
             methods = {
                 init: function(options) {
                     if ($.existsN(this)) {
@@ -23,11 +26,11 @@
                                 evCond = settings.evCond,
                                 classRemove = settings.classRemove,
                                 after = settings.after;
-                        
+
                         //init event click on wrapper change state
                         frameChecks.find(wrapper).off('click.' + nS).on('click.' + nS, function(e) {
                             var $this = $(this),
-                                    $thisD = $this.is('.disabled'),
+                                    $thisD = $this.is('.'+dC),
                                     nstcheck = $this.find(elCheckWrap);
                             if (nstcheck.length === 0)
                                 nstcheck = $this;
@@ -42,7 +45,7 @@
                             }
                             return false;
                         });
-                        
+
                         //init event reset
                         var form = frameChecks.closest('form');
                         form.each(function() {
@@ -56,7 +59,7 @@
                                 return false;
                             });
                         });
-                        
+
                         //init events input
                         wrapper.find('input').off('mousedown.' + nS).on('mousedown.' + nS, function(e) {
                             e.stopPropagation();
@@ -78,12 +81,12 @@
                         }).off('change.' + nS).on('change.' + nS, function() {
                             return false;
                         });
-                        
+
                         //init states of checkboxes
                         frameChecks.find(elCheckWrap).each(function() {
                             var $this = $(this).removeClass(classRemove).addClass(nS),
                                     input = $this.find('input');
-                                    
+
                             methods._changeCheckStart($this);
                             if (input.is(':focus'))
                                 input.trigger('focus.' + nS);
@@ -111,7 +114,7 @@
                     var input = el.find("input");
                     if (input === undefined)
                         input = $(this).find("input");
-                    el.addClass('active').parent().addClass('active');
+                    el.addClass(aC).parent().addClass(aC);
                     input.attr("checked", 'checked');
                     $(document).trigger({
                         'type': nS + '.cc',
@@ -125,7 +128,7 @@
                     var input = el.find("input");
                     if (input === undefined)
                         input = $(this).find("input");
-                    el.removeClass('active').parent().removeClass('active');
+                    el.removeClass(aC).parent().removeClass(aC);
                     input.removeAttr("checked");
                     $(document).trigger({
                         'type': nS + '.cuc',
@@ -168,7 +171,7 @@
                         el = this;
                     el.each(function() {
                         var input = el.find("input");
-                        el.addClass('disabled').parent().addClass('disabled');
+                        el.addClass(dC).parent().addClass(dC);
                         input.attr('disabled', 'disabled');
                         $(document).trigger({
                             'type': nS + '.ad',
@@ -183,7 +186,7 @@
                         el = this;
                     el.each(function() {
                         var input = el.find("input");
-                        el.removeClass('disabled').parent().removeClass('disabled');
+                        el.removeClass(dC).parent().removeClass(dC);
                         input.removeAttr('disabled');
                         $(document).trigger({
                             'type': nS + '.ae',
