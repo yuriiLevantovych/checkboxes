@@ -111,8 +111,6 @@
             if (el === undefined)
                 el = this;
             var input = el.find("input");
-            if (input === undefined)
-                input = $(this).find("input");
             el.addClass(aC).parent().addClass(aC);
             input.attr("checked", 'checked');
             input.trigger({
@@ -124,8 +122,6 @@
             if (el === undefined)
                 el = this;
             var input = el.find("input");
-            if (input === undefined)
-                input = $(this).find("input");
             el.removeClass(aC).parent().removeClass(aC);
             input.removeAttr("checked");
             input.trigger({
@@ -163,16 +159,16 @@
         },
         checkAllDisabled: function(el)
         {
-            var el = el;
             if (el === undefined)
                 el = this;
             el.each(function() {
-                var input = el.find("input");
-                el.addClass(dC).parent().addClass(dC);
+                var $this = $(this),
+                input = $this.find("input");
+                $this.addClass(dC).parent().addClass(dC);
                 input.attr('disabled', 'disabled');
                 input.trigger({
                     'type': nS + '.ad',
-                    'el': el
+                    'el': $this
                 });
             });
         },
@@ -181,12 +177,13 @@
             if (el === undefined)
                 el = this;
             el.each(function() {
-                var input = el.find("input");
-                el.removeClass(dC).parent().removeClass(dC);
+                var $this = $(this),
+                input = $this.find("input");
+                $this.removeClass(dC).parent().removeClass(dC);
                 input.removeAttr('disabled');
                 input.trigger({
                     'type': nS + '.ae',
-                    'el': el
+                    'el': $this
                 });
             });
         }
