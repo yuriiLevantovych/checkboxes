@@ -5,6 +5,7 @@
     };
     var aC = 'active',
     dC = 'disabled',
+    fC = 'focus',
     nS = "nstcheck",
     methods = {
         init: function(options) {
@@ -27,10 +28,10 @@
                 after = settings.after;
 
                 //init event click on wrapper change state
-                frameChecks.find(wrapper).off('click.' + nS).on('click.' + nS, function(e) {
+                frameChecks.find(wrapper).removeClass(dc+' '+aC+' '+fC).off('click.' + nS).on('click.' + nS, function(e) {
                     var $this = $(this),
                     $thisD = $this.hasClass(dC),
-                    nstcheck = $this.find(elCheckWrap);
+                    nstcheck = $this.find(elCheckWrap).removeClass(dc+' '+aC+' '+fC);
                     if (nstcheck.length === 0)
                         nstcheck = $this;
                     if (!$thisD) {
@@ -75,10 +76,10 @@
                         $(this).closest(wrapper).trigger('click.' + nS);
                 }).off('focus.' + nS).on('focus.' + nS, function(e) {
                     var $this = $(this);
-                    $this.closest(wrapper).add($this.closest(elCheckWrap)).addClass('focus');
+                    $this.closest(wrapper).add($this.closest(elCheckWrap)).addClass(fC);
                 }).off('blur.' + nS).on('blur.' + nS, function(e) {
                     var $this = $(this);
-                    $this.closest(wrapper).add($this.closest(elCheckWrap)).removeClass('focus');
+                    $this.closest(wrapper).add($this.closest(elCheckWrap)).removeClass(fC);
                 }).off('change.' + nS).on('change.' + nS, function() {
                     return false;
                 });
