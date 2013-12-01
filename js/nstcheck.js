@@ -107,7 +107,7 @@
                 checkChecked: function(el) {
                     if (el === undefined)
                         el = this;
-                    el.addClass(aC).parent().addClass(aC).end().find("input").prop("checked", true);
+                    el.addClass(aC).parent().addClass(aC).end().find("input").attr("checked", "checked");
                     el.find('input').trigger({
                         'type': nS + '.cc',
                         'el': el
@@ -116,7 +116,7 @@
                 checkUnChecked: function(el) {
                     if (el === undefined)
                         el = this;
-                    el.removeClass(aC).parent().removeClass(aC).end().find("input").removeProp("checked");
+                    el.removeClass(aC).parent().removeClass(aC).end().find("input").removeAttr("checked");
                     el.find('input').trigger({
                         'type': nS + '.cuc',
                         'el': el
@@ -126,7 +126,7 @@
                 {
                     if (el === undefined)
                         el = this;
-                    if (el.find("input").is(":checked")) {
+                    if (el.find("input").attr("checked") != undefined) {
                         methods.checkUnChecked(el);
                     }
                     else {
@@ -149,7 +149,7 @@
                 {
                     (el === undefined ? this : el).each(function() {
                         var $this = $(this);
-                        $this.addClass(dC).parent().addClass(dC).end().find("input").prop('disabled', true);
+                        $this.addClass(dC).parent().addClass(dC).end().find("input").attr('disabled', 'disabled');
                         $this.find('input').trigger({
                             'type': nS + '.ad',
                             'el': $this
@@ -160,7 +160,7 @@
                 {
                     (el === undefined ? this : el).each(function() {
                         var $this = $(this);
-                        $this.removeClass(dC).parent().removeClass(dC).end().find("input").removeProp('disabled');
+                        $this.removeClass(dC).parent().removeClass(dC).end().find("input").removeAttr('disabled');
                         $this.find('input').trigger({
                             'type': nS + '.ae',
                             'el': $this
